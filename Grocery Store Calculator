@@ -1,0 +1,47 @@
+
+data={"Product_name":[],"Quantity":[],"Price":[],"Total_price":[]} #creating dictionary to store cart data
+User_Name = input("Enter Your Name:")                              #taking user name
+number=input("Enter Your Mobile Number:")                          #taking user number
+a=input('Want to add items? (y/n)')
+i=0
+
+while (a=="y" or a=="Y"):                                          #storing items data /cart data in dictionary
+  data["Product_name"].append(input('Enter Product Name:'))
+  data["Quantity"].append(int(input('Enter Quantity:')))
+  data["Price"].append(float(input('Enter Price:')))
+  data["Total_price"].append(data["Quantity"][i]*data["Price"][i])
+  i+=1
+  a=input('Want to add more items? (y/n)')
+
+Final_Amount=0
+for x in range(len(data["Product_name"])):                        #finding total price of each item
+  Final_Amount+=data["Total_price"][x]
+
+code=input("Add Discount Code (if you have any) :")               #taking discount code if any
+discount=0
+if len(code)==0:
+  exit
+elif len(code)<6 or len(code)>6:
+  print("Invalid Code")
+else :
+  discount = 0.05*Final_Amount
+                                                                 #printing reciept
+
+print("Your Reciept: ")
+print("")
+print("***********KIET MART***********")
+print("")
+print("Customer Name:",User_Name)
+print("Mobile no.:",number)
+print("-------------------------------------------------------------------------")
+print("Product Name    |    Quantity    | Price Per Unit |  Total Price")
+print("")
+for j in range(0,i):
+  print(data["Product_name"][j],"               ",data["Quantity"][j],"          ",data["Price"][j],"          ",data["Total_price"][j])
+  print()
+print("---------------------------------------------------------------------------")
+
+#printing total,discount and discounted price
+print('Total Sum: ',Final_Amount)
+print('Discount: ',discount)
+print('Final Amount: ',Final_Amount-discount)
